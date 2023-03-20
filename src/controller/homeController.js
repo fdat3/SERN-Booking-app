@@ -22,10 +22,16 @@ let postCRUD = async (req, res) => {
     return res.send("Send infor succesfully!")
 }
 
+let displayCRUD = async (req, res) => {
+    let data = await CRUDService.getAllUsers();
+    return res.render("displayCRUD.ejs", { dataTable: data })
+}
+
 
 module.exports = {
     //key:       value
     getHomePage: getHomePage,
     getCRUD: getCRUD,
-    postCRUD: postCRUD
+    postCRUD: postCRUD,
+    displayCRUD: displayCRUD
 }
