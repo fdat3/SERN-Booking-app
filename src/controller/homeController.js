@@ -59,6 +59,10 @@ let deleteCRUD = async (req, res) => {
     }
 }
 
+let handleLogin = async (req, res) => {
+    return res.send("Success")
+}
+
 module.exports = {
     //key:       value
     getHomePage: getHomePage,
@@ -67,5 +71,6 @@ module.exports = {
     displayCRUD: displayCRUD,
     editCRUD: editCRUD,
     updateCRUD: updateCRUD,
-    deleteCRUD: deleteCRUD
+    deleteCRUD: deleteCRUD,
+    handleLogin: handleLogin
 }

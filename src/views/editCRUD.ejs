@@ -75,14 +75,15 @@
                                     <div class="col-md-6 mb-4">
                                         <h6 class="mb-2 pb-1">Gender: </h6>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sex" id="femaleGender"
+                                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
                                                 value="<%= user.gender %>" checked />
-                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                            <label class="form-check-label" name="gender"
+                                                for="femaleGender">Female</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sex" id="maleGender"
+                                            <input class="form-check-input" type="radio" name="gender" id="maleGender"
                                                 value="<%= user.address %>" />
-                                            <label class="form-check-label" for="maleGender">Male</label>
+                                            <label class="form-check-label" name="gender" for="maleGender">Male</label>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +124,9 @@
 
                                         <select class="select form-control-lg">
                                             <option disabled>Choose option</option>
-                                            <option name="roleId" value="1">admin</option>
-                                            <option name="roleId" value="2">doctor</option>
-                                            <option name="roleId" value="3">patient</option>
+                                            <option name="roleId" value="<%= user.roleId %>">admin</option>
+                                            <option name="roleId" value="<%= user.roleId %>">doctor</option>
+                                            <option name="roleId" value="<%= user.roleId %>">patient</option>
                                         </select>
                                         <label class="form-label select-label">Choose option</label>
 

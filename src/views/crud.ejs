@@ -75,14 +75,15 @@
                                     <div class="col-md-6 mb-4">
                                         <h6 class="mb-2 pb-1">Gender: </h6>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sex" id="femaleGender"
+                                            <input class="form-check-input" type="radio" name="gender" id="femaleGender"
                                                 value="0" checked />
-                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                            <label class="form-check-label" name="gender"
+                                                for="femaleGender">Female</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sex" id="maleGender"
+                                            <input class="form-check-input" type="radio" name="gender" id="maleGender"
                                                 value="1" />
-                                            <label class="form-check-label" for="maleGender">Male</label>
+                                            <label class="form-check-label" name="gender" for="maleGender">Male</label>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +115,7 @@
                                 <div class="row">
                                     <div class="col-12">
 
-                                        <select class="select form-control-lg">
+                                        <select class="select form-control-lg" name="roleId">
                                             <option disabled>Choose option</option>
                                             <option name="roleId" value="1">admin</option>
                                             <option name="roleId" value="2">doctor</option>
