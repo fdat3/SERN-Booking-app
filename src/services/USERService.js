@@ -14,7 +14,9 @@ let handleLogin = (email, password) => {
                     where: { email: email },
                     raw: true,
                 })
+                console.log({ user })
                 if (user) {
+                    console.log(user.password)
                     let checkPass = await bcrypt.compareSync(password, user.password)
                     if (checkPass) {
                         userData.errCode = 0;
@@ -35,6 +37,7 @@ let handleLogin = (email, password) => {
                 userData.errCode = 1;
                 userData.message = 'Your email or password is not exist!'
             }
+            console.log(userData)
             resolve(userData)
         } catch (error) {
             reject(error)

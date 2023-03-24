@@ -17,7 +17,6 @@ let initWebRoutes = (app) => {
     router.post('/update-crud', homeController.updateCRUD)
     router.post('/post-crud', homeController.postCRUD)
     router.post('/api/login', userController.handleLogin)
-    console.log(router.stack)
     return app.use("/", router)
 }
 
