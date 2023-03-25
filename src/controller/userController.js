@@ -20,8 +20,28 @@ let handleLogin = async (req, res) => {
     })
 }
 
+let handleGetAllUser = async (req, res) => {
+
+    let id = req.body.id;
+    if (!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing Input!',
+            user: []
+        })
+    }
+
+    let users = await userService.getAllUser(id)
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Already found user!',
+        users
+    })
+}
+
 
 
 module.exports = {
-    handleLogin: handleLogin
+    handleLogin: handleLogin,
+    handleGetAllUser: handleGetAllUser
 }
