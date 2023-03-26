@@ -100,21 +100,29 @@ let getAllUser = (userId) => {
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let hashPassword = await hashUserPassword(data.password)
-            await db.User.create({
-                email: data.email,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                password: hashPassword,
-                gender: data.gender === '1' ? true : false,
-                address: data.address,
-                phoneNumber: data.phoneNumber,
-                roleId: data.roleId
-            })
-            resolve({
-                errCode: 0,
-                message: 'Create New User Success !'
-            })
+            let check = await checkEmail(data.email);
+            if (check) {
+                resolve({
+                    message: 'This mail was exist, pls try another mail!'
+                })
+            } else {
+                let hashPassword = await hashUserPassword(data.password)
+                await db.User.create({
+                    email: data.email,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    password: hashPassword,
+                    gender: data.gender === '1' ? true : false,
+                    address: data.address,
+                    phoneNumber: data.phoneNumber,
+                    roleId: data.roleId
+                })
+                resolve({
+                    errCode: 0,
+                    message: 'Create New User Success !'
+                })
+            }
+
         } catch (error) {
             reject(error)
         }
