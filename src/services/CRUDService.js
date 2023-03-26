@@ -103,7 +103,10 @@ let updateUserData = (data) => {
 
                 await user.save()
                 let allUser = await db.User.findAll();
-                resolve(allUser)
+                resolve(allUser, {
+                    errCode: 0,
+                    message: 'Update user success!'
+                })
             } else {
                 resolve()
             }
