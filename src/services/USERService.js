@@ -36,7 +36,6 @@ let handleLogin = (email, password) => {
                         userData.message = 'Connection Success'
 
                         delete user.password;
-                        //delete user pass
                         userData.user = user;
                     } else {
                         userData.errCode = 1;
