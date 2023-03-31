@@ -1,5 +1,6 @@
 import db from '../models/index'
 import bcrypt from 'bcryptjs'
+import e, { response } from 'express';
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -193,10 +194,35 @@ let deleteUser = (userId) => {
     })
 }
 
+let getAllCode = (typeParam) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!typeParam) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing type!'
+                })
+            } else {
+                let response = {};
+                let allCode = await db.Allcode.findAll({
+                    where: { type: typeParam }
+                });
+                response.errCode = 0;
+                response = allCode;
+                console.log(allCode)
+                resolve(response)
+            }
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
     handleLogin: handleLogin,
     getAllUser: getAllUser,
     createNewUser: createNewUser,
     updateUser: updateUser,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    getAllCode: getAllCode
 }
