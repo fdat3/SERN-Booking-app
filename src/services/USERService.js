@@ -209,7 +209,6 @@ let getAllCode = (typeParam) => {
                 });
                 response.errCode = 0;
                 response = allCode;
-                console.log(allCode)
                 resolve(response)
             }
         } catch (error) {
