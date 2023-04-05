@@ -1,6 +1,5 @@
 import db from '../models/index'
 import bcrypt from 'bcryptjs'
-import e, { response } from 'express';
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -113,10 +112,11 @@ let createNewUser = (data) => {
                     firstName: data.firstName,
                     lastName: data.lastName,
                     password: hashPassword,
-                    gender: data.gender === '1' ? true : false,
+                    gender: data.gender,
                     address: data.address,
                     phoneNumber: data.phoneNumber,
-                    roleId: data.roleId
+                    roleId: data.roleId,
+                    positionId: data.positionId
                 })
                 resolve({
                     errCode: 0,
