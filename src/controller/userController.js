@@ -37,11 +37,14 @@ let handleGetAllUser = async (req, res) => {
         errMessage: 'Already found user!',
         users
     })
+
+
 }
 
 let handleCreateNewUser = async (req, res) => {
     let message = await userService.createNewUser(req.body)
     return res.status(200).json(message)
+
 }
 
 let handleUpdateUser = async (req, res) => {

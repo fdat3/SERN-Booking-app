@@ -138,7 +138,7 @@ let updateUser = async (data) => {
             })
             if (!user) {
                 resolve({
-                    errCode: 1,
+                    errCode: 2,
                     message: 'Missing input!'
                 })
             }
@@ -148,7 +148,8 @@ let updateUser = async (data) => {
                 user.gender = data.gender;
                 user.address = data.address;
                 user.phoneNumber = data.phoneNumber;
-                user.email = data.email;
+                user.roleId = data.roleId;
+                user.positionId = data.positionId;
 
                 await user.save();
                 resolve({
