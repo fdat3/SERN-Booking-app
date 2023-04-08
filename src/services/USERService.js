@@ -116,7 +116,8 @@ let createNewUser = (data) => {
                     address: data.address,
                     phoneNumber: data.phoneNumber,
                     roleId: data.roleId,
-                    positionId: data.positionId
+                    positionId: data.positionId,
+                    image: data.avatar
                 })
                 resolve({
                     errCode: 0,
@@ -150,6 +151,9 @@ let updateUser = async (data) => {
                 user.phoneNumber = data.phoneNumber;
                 user.roleId = data.roleId;
                 user.positionId = data.positionId;
+                if (data.avatar) {
+                    user.image = data.avatar
+                }
 
                 await user.save();
                 resolve({
