@@ -1,6 +1,7 @@
 import express from "express";
 import homeController from "../controller/homeController"
 import userController from "../controller/userController"
+import doctorController from '../controller/doctorController'
 
 let router = express.Router();
 
@@ -23,6 +24,9 @@ let initWebRoutes = (app) => {
     router.put('/api/update-user', userController.handleUpdateUser)
     router.delete('/api/delete-user', userController.handleDeleteUser)
     router.get('/api/get-all-code', userController.getAllCode)
+
+    // Doctor API
+    router.get('/api/doctor', doctorController.getDoctor)
 
 
     return app.use("/", router)
