@@ -18,6 +18,7 @@ let getDoctor = (limitInput) => {
                 nest: true
             })
 
+
             resolve(doctors)
         } catch (error) {
             reject(error)
@@ -78,7 +79,7 @@ let getDoctorDetail = (data) => {
                 let doctor = await db.User.findOne({
                     where: { id: data },
                     attributes: {
-                        exclude: ['password', 'image']
+                        exclude: ['password']
                     },
                     include: [
                         {
@@ -94,6 +95,9 @@ let getDoctorDetail = (data) => {
                     nest: true,
                     raw: true
                 })
+                if (doctor && doctor.image) {
+                    doctor.image = new Buffer(doctor.image, 'base64').toString('binary')
+                }
                 resolve(doctor)
             }
         } catch (error) {
