@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Blog.belongsTo(models.User, { foreignKey: 'doctorId' })
     }
   }
   Blog.init({

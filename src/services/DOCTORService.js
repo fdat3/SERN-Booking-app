@@ -66,8 +66,45 @@ let createDoctorInfo = (data) => {
     })
 }
 
+let getDoctorDetail = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data) {
+                resolve({
+                    errCode: 1,
+                    errMess: 'Missing data'
+                })
+            } else {
+                let doctor = await db.User.findOne({
+                    where: { id: data },
+                    attributes: {
+                        exclude: ['password', 'image']
+                    },
+                    include: [
+                        {
+                            model: db.Blog,
+                            attributes: ['contentHTML', 'description', 'doctorId']
+                        },
+                        {
+                            model: db.Allcode,
+                            as: 'positionData',
+                            attributes: ['value_en']
+                        }
+                    ],
+                    nest: true,
+                    raw: true
+                })
+                resolve(doctor)
+            }
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
     getDoctor: getDoctor,
     getAllDoctor: getAllDoctor,
-    createDoctorInfo: createDoctorInfo
+    createDoctorInfo: createDoctorInfo,
+    getDoctorDetail: getDoctorDetail
 }
