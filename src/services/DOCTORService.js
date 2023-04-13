@@ -41,7 +41,33 @@ let getAllDoctor = () => {
     })
 }
 
+let createDoctorInfo = (data) => {
+    return new Promise((resolve, reject) => {
+        try {
+            if (!data) {
+                resolve('Missing data')
+            } else {
+                db.Blog.create({
+                    contentHTML: data.contentHTML,
+                    content: data.content,
+                    doctorId: data.doctorId,
+                    specialtyId: data.specialtyId,
+                    clinicId: data.clinicId,
+                    description: data.description,
+                })
+                resolve({
+                    errCode: 0,
+                    message: 'Create Doctor Info Success !'
+                })
+            }
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
     getDoctor: getDoctor,
-    getAllDoctor: getAllDoctor
+    getAllDoctor: getAllDoctor,
+    createDoctorInfo: createDoctorInfo
 }
