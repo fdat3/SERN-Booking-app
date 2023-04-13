@@ -25,6 +25,23 @@ let getDoctor = (limitInput) => {
     })
 }
 
+let getAllDoctor = () => {
+    return new Promise((resolve, reject) => {
+        try {
+            let doctors = db.User.findAll({
+                where: { roleId: 'R2' },
+                attributes: {
+                    exclude: ['password', 'image']
+                }
+            })
+            resolve(doctors)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
-    getDoctor: getDoctor
+    getDoctor: getDoctor,
+    getAllDoctor: getAllDoctor
 }
