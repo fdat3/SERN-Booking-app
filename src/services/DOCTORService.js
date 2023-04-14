@@ -43,19 +43,35 @@ let getAllDoctor = () => {
 }
 
 let createDoctorInfo = (data) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             if (!data) {
                 resolve('Missing data')
             } else {
-                db.Blog.create({
-                    contentHTML: data.contentHTML,
-                    content: data.content,
-                    doctorId: data.doctorId,
-                    specialtyId: data.specialtyId,
-                    clinicId: data.clinicId,
-                    description: data.description,
-                })
+                if (data.action === "CREATE") {
+                    await db.Blog.create({
+                        contentHTML: data.contentHTML,
+                        content: data.content,
+                        doctorId: data.doctorId,
+                        specialtyId: data.specialtyId,
+                        clinicId: data.clinicId,
+                        description: data.description,
+                    })
+                }
+                else if (data.action === "UPDATE") {
+                    let doctorBlog = await db.Blog.findOne({
+                        where: { doctorId: data.doctorId },
+                    })
+
+                    if (doctorBlog) {
+                        doctorBlog.doctorId = data.doctorId;
+                        doctorBlog.contentHTML = data.contentHTML;
+                        doctorBlog.description = data.description;
+                        doctorBlog.updateAt = new Date();
+                        await doctorBlog.save();
+                    }
+                }
+
                 resolve({
                     errCode: 0,
                     message: 'Create Doctor Info Success !'

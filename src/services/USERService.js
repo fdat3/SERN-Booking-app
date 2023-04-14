@@ -126,7 +126,7 @@ let createNewUser = (data) => {
             }
 
         } catch (error) {
-            reject(error)
+            reject('Create User Error:', error)
         }
     })
 }
